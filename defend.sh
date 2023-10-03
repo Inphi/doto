@@ -38,7 +38,6 @@ fi
 INDEX=$((RANDOM % COUNT_INPROGRESS))
 GAME_INDEX=${GAME_INDICES[$INDEX]}
 GAME_ADDR=$(cast call --rpc-url "${RPC_URL}" "${GAME_FACTORY_ADDRESS}" 'gameAtIndex(uint256) returns(uint8, uint64, address)' "${GAME_INDEX}" | awk 'NR==3')
-STATUS=$(cast call --rpc-url "${RPC_URL}" "${GAME_ADDR}" "status() return(uint8)" | cast to-dec)
 
 export OP_CHALLENGER_GAME_ALLOWLIST="${GAME_ADDR}"
 echo "Starting op-challenger for ${OP_CHALLENGER_GAME_ALLOWLIST}"
