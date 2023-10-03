@@ -26,4 +26,4 @@ If you'd like to participate in multiple games then you should join the frontlin
 ## Fronline Defense
 
 If you have sufficient disk (and CPU), you can participate in defending outputs from the frontline by participating in _all_ disputes games.
-Simply run `docker compose up` to join the frontline.
+Simply run `docker compose up op-challenger` to join the frontline.
