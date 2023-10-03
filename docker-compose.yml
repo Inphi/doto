@@ -1,0 +1,37 @@
+version: '3.8'
+
+volumes:
+  challenger_data:
+
+x-op-challenger-env: &op-challenger-env
+  OP_CHALLENGER_CANNON_NETWORK: goerli
+  OP_CHALLENGER_GAME_FACTORY_ADDRESS: 0xad9e5E6b39F55EE7220A3dC21a640B089196a89f
+  OP_CHALLENGER_TRACE_TYPE: cannon
+  OP_CHALLENGER_AGREE_WITH_PROPOSED_OUTPUT: true
+  OP_CHALLENGER_DATADIR: /data/op-challenger
+  OP_CHALLENGER_CANNON_PRESTATE: /data/static/prestate.json
+  OP_CHALLENGER_LOG_FORMAT: terminal
+  OP_CHALLENGER_NUM_CONFIRMATIONS: 2
+  OP_CHALLENGER_MAX_CONCURRENCY: 4
+  OP_CHALLENGER_L1_ETH_RPC: $OP_CHALLENGER_L1_ETH_RPC
+  OP_CHALLENGER_CANNON_L2: $OP_CHALLENGER_CANNON_L2
+  OP_CHALLENGER_PRIVATE_KEY: $OP_CHALLENGER_PRIVATE_KEY
+   
+
+x-op-challenger: &op-challenger
+  image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v0.0.5
+  volumes:
+    - challenger_data:/data/op-challenger
+    - ./prestate.json:/data/static/prestate.json
+     
+services:
+  op-challenger:
+    <<: *op-challenger
+    environment:
+      <<: *op-challenger-env
+
+  op-challenger-whitelisted:
+    <<: *op-challenger
+    environment:
+      <<: *op-challenger-env
+      OP_CHALLENGER_GAME_ALLOWLIST: $OP_CHALLENGER_GAME_ALLOWLIST
