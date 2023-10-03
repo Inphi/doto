@@ -19,7 +19,7 @@ x-op-challenger-env: &op-challenger-env
    
 
 x-op-challenger: &op-challenger
-  image: us-docker.pkg.dev/oplabs-tools-artifacts/images/op-challenger:v0.0.5
+  image: inphi/op-challenger:v0.0.5
   volumes:
     - challenger_data:/data/op-challenger
     - ./prestate.json:/data/static/prestate.json
@@ -35,3 +35,5 @@ services:
     environment:
       <<: *op-challenger-env
       OP_CHALLENGER_GAME_ALLOWLIST: $OP_CHALLENGER_GAME_ALLOWLIST
+    profiles:
+      - backlines
