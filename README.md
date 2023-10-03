@@ -2,12 +2,12 @@
 
 Join the battle against illegitimate disputes by defending proposed outputs on Optimism Goerli. This repository is your gateway to an effortless participation in the Fault Dispute Game (FDG).
 
-## Prequisites
+## Requirements
 
 Make sure you have the following installed on your system:
 - docker (with docker compose)
 - [foundry](https://book.getfoundry.sh/getting-started/installation)
-- At least 30 GB of disk
+- At least 30 GB of available disk
 
 ## Configuration:
 
